@@ -11,7 +11,7 @@ import java.util.List;
  * Repository
  *      Responsável por gerenciar queries do banco de dados
  */
-
+/*
 @Repository
 public interface ReportsRepository extends JpaRepository<Tool, Integer> {
 
@@ -23,3 +23,4 @@ public interface ReportsRepository extends JpaRepository<Tool, Integer> {
     );
 
 }
+*/

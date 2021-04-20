@@ -1,6 +1,5 @@
 package ferramong.reports.repositories;
 
-import ferramong.reports.entities.Scheduler;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,13 +13,12 @@ import java.util.List;
  */
 
 @Repository
-public interface SchedulerRepository extends JpaRepository<Scheduler, Integer> {
+public interface ReportsRepository extends JpaRepository<Tool, Integer> {
 
     @Query(
-            "SELECT s FROM Scheduler s " +
-            "WHERE s.name LIKE CONCAT(UPPER(:name), '%')"
+
     )
-    public List<Scheduler> listAllWithName(
+    public List<Tool> listAllWithName(
             @Param("name") String name
     );
 

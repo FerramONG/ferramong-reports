@@ -8,7 +8,7 @@
     </field>
     <field name="total" class="java.lang.Double">
     </field>
-    <field name="date" class="java.sql.Timestamp">
+    <field name="date" class="java.sql.Date">
     </field>
     <background>
         <band/>

@@ -20,7 +20,7 @@ public class Payment implements Serializable {
 
     private Date date;
 
-    private double total;
+    private double total; //valor pago pelo cliente
 
     private String type;    // credit, debit, money, creditools
 }

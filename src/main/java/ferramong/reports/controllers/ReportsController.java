@@ -76,7 +76,7 @@ public class ReportsController {
     }
 
     @ResponseBody
-    @GetMapping("/sales/report/{start}/{end}")
+    @GetMapping(value="/sales/report/{start}/{end}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void generateReport(@PathVariable("start")
                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date start,
                                 @PathVariable("end")

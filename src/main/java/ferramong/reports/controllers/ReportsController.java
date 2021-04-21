@@ -101,7 +101,7 @@ public class ReportsController {
             throws IOException {
 
         response.setContentType("application/pdf");
-        response.setHeader("Content-disposition", "attachment; filename=" + name);
+        response.setHeader("Content-disposition", "inline; filename=" + name);
         response.setContentLength(data.length);
 
         response.getOutputStream().write(data);

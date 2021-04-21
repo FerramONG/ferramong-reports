@@ -1,16 +1,19 @@
 package ferramong.reports.controllers;
 
 import ferramong.reports.entities.Purchases;
-import ferramong.reports.entities.Tool;
 import ferramong.reports.models.Payment;
-import ferramong.reports.services.ReportsService;
+import ferramong.reports.services.ReportService;
 import lombok.AllArgsConstructor;
+import net.sf.jasperreports.engine.JRException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.SpringVersion;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +24,9 @@ import java.util.List;
         methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
 )
 public class ReportsController {
+
+    @Autowired
+    private ReportService service;
 
     /**
      * Generates ONG purchases report within a data range.
@@ -40,7 +46,7 @@ public class ReportsController {
                                                             @DateTimeFormat(pattern="yyyy-MM-dd") Date start,
                                                             @PathVariable("end")
                                                             @DateTimeFormat(pattern="yyyy-MM-dd") Date end) {
-        List<Payment> purchases = Purchases.getAllOngPurchases(start, end);
+        List<Payment> purchases = Purchases.getAllOngToolsPurchases(start, end);
 
         return ResponseEntity.ok().body(purchases);
     }
@@ -59,8 +65,19 @@ public class ReportsController {
      */
     @GetMapping("/purchases/dweller/{id_dweller}")
     public ResponseEntity<List<Payment>> getAllDwellerPurchases(@PathVariable("id_dweller") int idDweller) {
-        List<Payment> purchases = Purchases.getAllDwellerPurchases(idDweller);
+        List<Payment> purchases = Purchases.getAllDwellerToolsPurchases(idDweller);
 
         return ResponseEntity.ok().body(purchases);
+    }
+
+    @GetMapping("/sales/report/{start}/{end}")
+    public String generateReport(@PathVariable("start")
+                                @DateTimeFormat(pattern="yyyy-MM-dd") Date start,
+                                @PathVariable("end")
+                                @DateTimeFormat(pattern="yyyy-MM-dd") Date end)  throws FileNotFoundException, JRException {
+
+
+
+        return service.exportReport(start,end);
     }
 }

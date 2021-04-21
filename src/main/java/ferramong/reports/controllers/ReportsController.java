@@ -8,6 +8,9 @@ import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.SpringVersion;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -71,12 +74,21 @@ public class ReportsController {
     }
 
     @GetMapping("/sales/report/{start}/{end}")
-    public String generateReport(@PathVariable("start")
+    public ResponseEntity<byte[]> generateReport(@PathVariable("start")
                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date start,
                                 @PathVariable("end")
                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date end)  throws FileNotFoundException, JRException {
 
 
-        return service.exportReportSales(start,end);
+        byte[] pdf = service.exportReportSales(start,end);
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+
+        headers.add("Content-Disposition", "inline; filename=" + "vendas.pdf");
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdf, headers, HttpStatus.OK);
+        return response;
     }
 }

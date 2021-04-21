@@ -30,7 +30,7 @@ public class ReportService {
 
     public byte[] exportReportSales(Date start, Date end) throws FileNotFoundException, JRException {
         //Load file and compile it
-        String path = "src/main/resources/relatorio";
+        String path = "src/main/resources";
         //Payment[] payments={};
         List<Payment> payments;
         //payments = Arrays.asList(new Payment());

@@ -37,7 +37,7 @@ public class ReportService {
                 //Purchases.getAllOngToolsPurchases(start, end);
         payments=Purchases.getAllOngCreditoolsPurchases(start,end);
         //File file= ResourceUtils.getFile("classpath:vendas-ong.jrxml");
-        File file= ResourceUtils.getFile("../../../../resources/vendas-ong.jrxml");
+        File file= ResourceUtils.getFile(path + "/vendas-ong.jrxml");
         JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
 
         JRBeanCollectionDataSource dataSource=new JRBeanCollectionDataSource(payments);

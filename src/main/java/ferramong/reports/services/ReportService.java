@@ -35,7 +35,7 @@ public class ReportService {
         List<Payment> payments;
         //payments = Arrays.asList(new Payment());
                 //Purchases.getAllOngToolsPurchases(start, end);
-        payments=Purchases.getAllOngToolsPurchases(start,end);
+        payments=Purchases.getAllOngCreditoolsPurchases(start,end);
         File file= ResourceUtils.getFile("classpath:vendas-ong.jrxml");
         JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
 
@@ -44,6 +44,27 @@ public class ReportService {
         //parameters.put("createdBy", "Java Techie");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\vendas.pdf");
+
+        return "report generated in path : " + path;
+
+    }
+
+    public String exportReportPurchases(int id_dweller) throws FileNotFoundException, JRException {
+        //Load file and compile it
+        String path = "src/main/resources/relatorio";
+        //Payment[] payments={};
+        List<Payment> payments;
+        //payments = Arrays.asList(new Payment());
+        //Purchases.getAllOngToolsPurchases(start, end);
+        payments=Purchases.getAllDwellerCreditoolsPurchases(id_dweller);
+        File file= ResourceUtils.getFile("classpath:vendas-ong.jrxml");
+        JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
+
+        JRBeanCollectionDataSource dataSource=new JRBeanCollectionDataSource(payments);
+        Map<String, Object> parameters = new HashMap<>();
+        //parameters.put("createdBy", "Java Techie");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\compras.pdf");
 
         return "report generated in path : " + path;
 

@@ -77,7 +77,6 @@ public class ReportsController {
                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date end)  throws FileNotFoundException, JRException {
 
 
-
-        return service.exportReport(start,end);
+        return service.exportReportSales(start,end);
     }
 }

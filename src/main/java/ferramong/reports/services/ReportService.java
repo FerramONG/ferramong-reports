@@ -28,24 +28,28 @@ import java.util.*;
 @AllArgsConstructor
 public class ReportService {
 
-    public String exportReport(Date start, Date end) throws FileNotFoundException, JRException {
+    public String exportReportSales(Date start, Date end) throws FileNotFoundException, JRException {
         //Load file and compile it
         String path = "src/main/resources/relatorio";
-        Payment[] payments={};
+        //Payment[] payments={};
+        List<Payment> payments;
         //payments = Arrays.asList(new Payment());
                 //Purchases.getAllOngToolsPurchases(start, end);
+        payments=Purchases.getAllOngToolsPurchases(start,end);
         File file= ResourceUtils.getFile("classpath:vendas-ong.jrxml");
         JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
 
-        JRBeanCollectionDataSource dataSource=new JRBeanCollectionDataSource(Arrays.asList(payments));
+        JRBeanCollectionDataSource dataSource=new JRBeanCollectionDataSource(payments);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("createdBy", "Java Techie");
+        //parameters.put("createdBy", "Java Techie");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\vendas.pdf");
 
         return "report generated in path : " + path;
 
     }
+
+
 
 
 

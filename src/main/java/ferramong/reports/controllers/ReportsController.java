@@ -8,12 +8,17 @@ import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.SpringVersion;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -70,13 +75,36 @@ public class ReportsController {
         return ResponseEntity.ok().body(purchases);
     }
 
+    @ResponseBody
     @GetMapping("/sales/report/{start}/{end}")
-    public String generateReport(@PathVariable("start")
+    public void generateReport(@PathVariable("start")
                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date start,
                                 @PathVariable("end")
-                                @DateTimeFormat(pattern="yyyy-MM-dd") Date end)  throws FileNotFoundException, JRException {
+                                @DateTimeFormat(pattern="yyyy-MM-dd") Date end,
+                               HttpServletResponse response) throws IOException, JRException {
 
 
-        return service.exportReportSales(start,end);
+        byte[] pdf = service.exportReportSales(start,end);
+        streamReport(response, pdf, "vendas.pdf");
+        /*
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+
+        headers.add("Content-Disposition", "inline; filename=" + "vendas.pdf");
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdf, headers, HttpStatus.OK);
+        return response;*/
+    }
+
+    protected void streamReport(HttpServletResponse response, byte[] data, String name)
+            throws IOException {
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-disposition", "attachment; filename=" + name);
+        response.setContentLength(data.length);
+
+        response.getOutputStream().write(data);
+        response.getOutputStream().flush();
     }
 }

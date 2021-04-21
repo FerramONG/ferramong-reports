@@ -16,7 +16,7 @@ public class Purchases {
     }
 
     public static List<Payment> getAllOngToolsPurchases(Date start, Date end) {
-        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         RestTemplate rest = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -37,7 +37,7 @@ public class Purchases {
     }
 
     public static List<Payment> getAllOngCreditoolsPurchases(Date start, Date end) {
-        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         RestTemplate rest = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

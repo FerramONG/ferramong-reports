@@ -107,4 +107,23 @@ public class ReportsController {
         response.getOutputStream().write(data);
         response.getOutputStream().flush();
     }
+
+    @ResponseBody
+    @GetMapping(value="/purchases/report/{id_dweller}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void generateReportPurchases(@PathVariable("id_dweller") int idDweller,
+                                        HttpServletResponse response) throws IOException, JRException {
+
+
+        byte[] pdf = service.exportReportPurchases(idDweller);
+        streamReport(response, pdf, "historico.pdf");
+        /*
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+
+        headers.add("Content-Disposition", "inline; filename=" + "vendas.pdf");
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdf, headers, HttpStatus.OK);
+        return response;*/
+    }
 }

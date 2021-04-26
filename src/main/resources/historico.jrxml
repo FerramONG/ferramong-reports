@@ -5,9 +5,9 @@
     </field>
     <field name="total" class="java.lang.Double">
     </field>
-    <field name="creditools" class="java.lang.Double">
+    <field name="credit" class="java.lang.Double">
     </field>
-    <field name="date" class="java.sql.Date">
+    <field name="date" class="java.util.Date">
     </field>
     <field name="balance" class="java.lang.Double">
     </field>
@@ -120,7 +120,7 @@
                 <textElement>
                     <font size="14"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$F{creditools}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{credit}]]></textFieldExpression>
             </textField>
             <textField textAdjust="StretchHeight">
                 <reportElement x="333" y="0" width="111" height="20" uuid="17b4fd09-8c7c-418f-8529-5ba1b0beeb7c">

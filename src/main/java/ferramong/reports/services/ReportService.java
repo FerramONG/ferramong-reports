@@ -60,7 +60,7 @@ public class ReportService {
         int i;
         int n = compras.size();
         for(i = 0; i<n; i++){
-            compras.get(i).setCredit(compras.get(i).getCredit()*10);
+            compras.get(i).setCredit(compras.get(i).getTotal()*10);
             compras.get(i).setBalance(Purchases.getBalance(idDweller));
         }
 

@@ -77,7 +77,7 @@ public class ReportsController {
 
     @ResponseBody
     @GetMapping(value="/sales/report/{start}/{end}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void generateReport(@PathVariable("start")
+    public void generateOngReport(@PathVariable("start")
                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date start,
                                 @PathVariable("end")
                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date end,
@@ -110,7 +110,7 @@ public class ReportsController {
 
     @ResponseBody
     @GetMapping(value="/purchases/report/{id_dweller}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void generateReportPurchases(@PathVariable("id_dweller") int idDweller,
+    public void generateDwellerReport(@PathVariable("id_dweller") int idDweller,
                                         HttpServletResponse response) throws IOException, JRException {
 
 

@@ -33,8 +33,8 @@
                     <text><![CDATA[Vendas de creditools]]></text>
                 </staticText>
                 <image>
-                    <reportElement x="210" y="10" width="71" height="61" uuid="961c8bf2-7b28-466f-bff5-181d34ceb884"/>
-                    <imageExpression><![CDATA["/ferramong.png"]]></imageExpression>
+                    <reportElement x="230" y="10" width="71" height="61" uuid="961c8bf2-7b28-466f-bff5-181d34ceb884"/>
+                    <imageExpression><![CDATA["/Images/ferramong.png"]]></imageExpression>
                 </image>
             </frame>
         </band>

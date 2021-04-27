@@ -17,7 +17,7 @@
     <title>
         <band height="72">
             <frame>
-                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#303030" uuid="1163d664-9d3b-48c5-80da-a70f8a4379cb"/>
+                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#292929" uuid="1163d664-9d3b-48c5-80da-a70f8a4379cb"/>
                 <staticText>
                     <reportElement x="10" y="10" width="200" height="43" forecolor="#FFFFFF" uuid="90d149b6-5b4e-4c83-8f37-b9c9b30995ca"/>
                     <textElement>

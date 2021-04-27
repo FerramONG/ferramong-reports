@@ -21,7 +21,7 @@
                 <staticText>
                     <reportElement x="10" y="10" width="200" height="43" forecolor="#FFFFFF" uuid="90d149b6-5b4e-4c83-8f37-b9c9b30995ca"/>
                     <textElement>
-                        <font size="34" isBold="true"/>
+                        <font size="30" isBold="true"/>
                     </textElement>
                     <text><![CDATA[FerramONG]]></text>
                 </staticText>

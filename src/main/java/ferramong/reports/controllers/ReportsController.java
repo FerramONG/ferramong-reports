@@ -31,7 +31,7 @@ import java.util.List;
 public class ReportsController {
 
     @Autowired
-    private ReportService service;
+    private ReportService reportService;
 
     /**
      * Generates ONG purchases report within a data range.
@@ -84,7 +84,7 @@ public class ReportsController {
                                HttpServletResponse response) throws IOException, JRException {
 
 
-        byte[] pdf = service.exportReportSales(start,end);
+        byte[] pdf = reportService.exportReportSales(start,end);
         streamReport(response, pdf, "vendas.pdf");
         /*
         HttpHeaders headers = new HttpHeaders();
@@ -114,7 +114,7 @@ public class ReportsController {
                                         HttpServletResponse response) throws IOException, JRException {
 
 
-        byte[] pdf = service.exportReportPurchases(idDweller);
+        byte[] pdf = reportService.exportReportPurchases(idDweller);
         streamReport(response, pdf, "historico.pdf");
         /*
         HttpHeaders headers = new HttpHeaders();

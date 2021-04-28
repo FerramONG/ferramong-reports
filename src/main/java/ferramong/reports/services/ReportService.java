@@ -1,11 +1,9 @@
 package ferramong.reports.services;
 
-//import ferramong.reports.repositories.ReportsRepository;
 
 import ferramong.reports.entities.Purchases;
 import ferramong.reports.models.DwellerHistory;
 import ferramong.reports.models.Payment;
-//import ferramong.reports.models.Purchase;
 import lombok.AllArgsConstructor;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -33,12 +31,9 @@ public class ReportService {
     public byte[] exportReportSales(Date start, Date end) throws FileNotFoundException, JRException {
         //Load file and compile it
         String path = "src/main/resources";
-        //Payment[] payments={};
         List<Payment> payments;
-        //payments = Arrays.asList(new Payment());
-                //Purchases.getAllOngToolsPurchases(start, end);
+
         payments=Purchases.getAllOngCreditoolsPurchases(start,end);
-        //File file= ResourceUtils.getFile("classpath:vendas-ong.jrxml");
         File file= ResourceUtils.getFile(path + "/vendas-ong.jrxml");
         JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
 
@@ -52,8 +47,7 @@ public class ReportService {
     public byte[] exportReportPurchases(int idDweller) throws FileNotFoundException, JRException {
         //Load file and compile it
         String path = "src/main/resources";
-        //Payment[] payments={};
-        //List<Payment> payments = new ArrayList<Payment>();
+
         List<DwellerHistory> compras = new ArrayList<DwellerHistory>();
         compras=Purchases.getAllDwellerCreditoolsPurchases(idDweller);
 
@@ -64,10 +58,7 @@ public class ReportService {
             compras.get(i).setBalance(Purchases.getBalance(idDweller));
         }
 
-        //payments = Arrays.asList(new Payment());
-        //Purchases.getAllOngToolsPurchases(start, end);
-        //payments=Purchases.getAllDwellerCreditoolsPurchases(idDweller);
-        //File file= ResourceUtils.getFile("classpath:vendas-ong.jrxml");
+
         File file= ResourceUtils.getFile(path + "/historico.jrxml");
         JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
 

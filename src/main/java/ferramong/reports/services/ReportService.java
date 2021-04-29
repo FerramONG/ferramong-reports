@@ -1,6 +1,5 @@
 package ferramong.reports.services;
 
-
 import ferramong.reports.entities.Purchases;
 import ferramong.reports.models.DwellerHistory;
 import ferramong.reports.models.Payment;
@@ -14,15 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.*;
-
-/*
- * Service
- *      Terá a lógica principal
- *      Não tem a ver com modelagem de dados
- *      Não faz comunicação direta com bd (quem faz é 'repositories')
- *		Não é um estado (por outro lado, 'models' são)
- *		Não modela dados (quem faz isso são os 'models')
- */
 
 @Service
 @AllArgsConstructor
@@ -40,8 +30,8 @@ public class ReportService {
         JRBeanCollectionDataSource dataSource=new JRBeanCollectionDataSource(payments);
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-        return JasperExportManager.exportReportToPdf(jasperPrint);
 
+        return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 
     public byte[] exportReportPurchases(int idDweller) throws FileNotFoundException, JRException {
@@ -58,19 +48,13 @@ public class ReportService {
             compras.get(i).setBalance(Purchases.getBalance(idDweller));
         }
 
-
         File file= ResourceUtils.getFile(path + "/historico.jrxml");
         JasperReport jasperReport= JasperCompileManager.compileReport(file.getAbsolutePath());
 
         JRBeanCollectionDataSource dataSource=new JRBeanCollectionDataSource(compras);
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
         return JasperExportManager.exportReportToPdf(jasperPrint);
-
     }
-
-
-
-
-
 }

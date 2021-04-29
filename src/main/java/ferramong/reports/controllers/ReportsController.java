@@ -86,15 +86,6 @@ public class ReportsController {
 
         byte[] pdf = reportService.exportReportSales(start,end);
         streamReport(response, pdf, "vendas.pdf");
-        /*
-        HttpHeaders headers = new HttpHeaders();
-
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-
-        headers.add("Content-Disposition", "inline; filename=" + "vendas.pdf");
-        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdf, headers, HttpStatus.OK);
-        return response;*/
     }
 
     protected void streamReport(HttpServletResponse response, byte[] data, String name)
@@ -112,18 +103,7 @@ public class ReportsController {
     @GetMapping(value="/purchases/report/{id_dweller}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void generateDwellerReport(@PathVariable("id_dweller") int idDweller,
                                         HttpServletResponse response) throws IOException, JRException {
-
-
         byte[] pdf = reportService.exportReportPurchases(idDweller);
         streamReport(response, pdf, "historico.pdf");
-        /*
-        HttpHeaders headers = new HttpHeaders();
-
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-
-        headers.add("Content-Disposition", "inline; filename=" + "vendas.pdf");
-        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdf, headers, HttpStatus.OK);
-        return response;*/
     }
 }

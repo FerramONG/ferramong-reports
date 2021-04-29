@@ -1,5 +1,5 @@
 <p align='center'>
-<img src='https://raw.githubusercontent.com/FerramONG/ferramong-reportsferramong-reports/master/docs/img/logo/logo.png?raw=true' />
+<img src='https://raw.githubusercontent.com/FerramONG/ferramong-reports/master/docs/img/logo/logo.png?raw=true' />
 </p>
 
 <h1 align='center'>FerramONG - Reports</h1>
@@ -8,7 +8,7 @@
 	<a href="https://github.com/FerramONG/ferramong-reports/actions/workflows/windows.yml"><img src="https://github.com/FerramONG/ferramong-reports/actions/workflows/windows.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/FerramONG/ferramong-reports/actions/workflows/macos.yml"><img src="https://github.com/FerramONG/ferramong-reports/actions/workflows/macos.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/FerramONG/ferramong-reports/actions/workflows/ubuntu.yml"><img src="https://github.com/FerramONG/ferramong-reports/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
-	<a href="http://java.oracle.com"><img src="https://img.shields.io/badge/java-12+-D0008F.svg" alt="Java compatibility"></a>
+	<a href="http://java.oracle.com"><img src="https://img.shields.io/badge/java-14+-D0008F.svg" alt="Java compatibility"></a>
 	<a href="https://github.com/FerramONG/ferramong-reports/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-BSD0-919191.svg" alt="License"></a>
 	<a href="https://github.com/FerramONG/ferramong-reports/releases"><img src="https://img.shields.io/github/v/release/FerramONG/ferramong-reports" alt="Release"></a>
 </p>
